@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Sekolah</title>
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, sans-serif;
+    }
+
+    body{
+      height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(135deg,#4facfe,#00f2fe);
+      overflow:hidden;
+    }
+
+    /* Animasi Bubble */
+    .bubble{
+      position:absolute;
+      bottom:-100px;
+      background:rgba(255,255,255,0.2);
+      border-radius:50%;
+      animation:float 10s infinite;
+    }
+
+    .bubble:nth-child(1){
+      width:40px;
+      height:40px;
+      left:10%;
+      animation-duration:8s;
+    }
+
+    .bubble:nth-child(2){
+      width:60px;
+      height:60px;
+      left:30%;
+      animation-duration:12s;
+    }
+
+    .bubble:nth-child(3){
+      width:25px;
+      height:25px;
+      left:70%;
+      animation-duration:7s;
+    }
+
+    .bubble:nth-child(4){
+      width:80px;
+      height:80px;
+      left:85%;
+      animation-duration:15s;
+    }
+
+    @keyframes float{
+      0%{
+        transform:translateY(0);
+        opacity:0;
+      }
+      50%{
+        opacity:1;
+      }
+      100%{
+        transform:translateY(-110vh);
+        opacity:0;
+      }
+    }
+
+    .login-box{
+      width:370px;
+      background:white;
+      padding:35px;
+      border-radius:20px;
+      box-shadow:0 10px 25px rgba(0,0,0,0.2);
+      text-align:center;
+      position:relative;
+      z-index:10;
+    }
+
+    .login-box h1{
+      color:#0077b6;
+      margin-bottom:10px;
+    }
+
+    .login-box p{
+      color:gray;
+      margin-bottom:20px;
+    }
+
+    .icon{
+      font-size:60px;
+      margin-bottom:10px;
+    }
+
+    input, select{
+      width:100%;
+      padding:12px;
+      margin:10px 0;
+      border-radius:10px;
+      border:1px solid #ccc;
+      font-size:15px;
+    }
+
+    input:focus, select:focus{
+      border-color:#0077b6;
+      outline:none;
+    }
+
+    button{
+      width:100%;
+      padding:12px;
+      margin-top:10px;
+      border:none;
+      border-radius:10px;
+      background:#0077b6;
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+      transition:0.3s;
+    }
+
+    button:hover{
+      background:#023e8a;
+      transform:scale(1.03);
+    }
+
+    #message{
+      margin-top:10px;
+      font-size:14px;
+      font-weight:bold;
+    }
+
+    /* Halaman Utama */
+    .home{
+      display:none;
+      text-align:center;
+      color:white;
+      animation:fade 1s;
+    }
+
+    .home h2{
+      font-size:45px;
+      margin-bottom:15px;
+    }
+
+    .home p{
+      font-size:20px;
+    }
+
+    @keyframes fade{
+      from{
+        opacity:0;
+      }
+      to{
+        opacity:1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Bubble -->
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+  <div class="bubble"></div>
+
+  <!-- Login -->
+  <div class="login-box" id="loginPage">
+
+    <div class="icon">🏫</div>
+
+    <h1>Website Sekolah</h1>
+    <p>Silakan login terlebih dahulu</p>
+
+    <select id="role">
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+    </select>
+
+    <input type="text" id="username" placeholder="Masukkan Username">
+
+    <input type="password" id="password" placeholder="Masukkan Password">
+
+    <button onclick="login()">Login</button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <!-- Halaman Utama -->
+  <div class="home" id="homePage">
+    <h2>🎓 Selamat Datang</h2>
+    <p>Di Website Resmi Sekolah</p>
+    <br>
+    <p>Belajar • Disiplin • Berprestasi</p>
+  </div>
+
+  <script>
+
+    function login(){
+
+      let role = document.getElementById("role").value;
+      let username = document.getElementById("username").value;
+      let password = document.getElementById("password").value;
+      let message = document.getElementById("message");
+
+      // Login Admin
+      if(role == "admin" &&
+         username == "admin" &&
+         password == "nazwazazkia"){
+
+          document.getElementById("loginPage").style.display = "none";
+          document.getElementById("homePage").style.display = "block";
+      }
+
+      // Login User
+      else if(role == "user" &&
+              username == "user" &&
+              password == "zazkianazwa"){
+
+          document.getElementById("loginPage").style.display = "none";
+          document.getElementById("homePage").style.display = "block";
+      }
+
+      else{
+        message.style.color = "red";
+        message.innerHTML = "Username atau Password salah!";
+      }
+
+    }
+
+  </script>
+
+</body>
+</html>
